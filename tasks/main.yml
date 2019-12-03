@@ -1,0 +1,43 @@
+---
+- name: Ensure /etc/sysctl.d exists
+  file:
+    path: /etc/sysctl.d
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Generate /etc/sysctl.conf
+  template:
+    src: sysctl.conf.j2
+    dest: /etc/sysctl.conf
+    owner: root
+    group: root
+    mode: 0644
+  tags: configure
+
+- name: "Generate /etc/sysctl.d/{{ openio_sysctl_order_id }}-openio-{{ openio_sysctl_namespace }}.conf"
+  template:
+    src: openio.conf.j2
+    dest: "/etc/sysctl.d/{{ openio_sysctl_order_id}}-openio-{{ openio_sysctl_namespace}}.conf"
+    owner: root
+    group: root
+    mode: 0644
+  register: _file_openio
+  tags: configure
+
+- name: "Generate /etc/sysctl.d/{{ openio_sysctl_legacy_order_id }}-openio.conf"
+  template:
+    src: legacy.conf.j2
+    dest: "/etc/sysctl.d/{{ openio_sysctl_legacy_order_id}}-openio.conf"
+    owner: root
+    group: root
+    mode: 0644
+  register: _file_legacy
+  tags: configure
+
+- name: "Apply kernel parameters"
+  command: sysctl --system
+  when: _file_openio is changed or _file_legacy is changed
+  tags: configure
+...

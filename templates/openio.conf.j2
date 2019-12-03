@@ -1,0 +1,4 @@
+# {{ ansible_managed }}
+{% for key,value in openio_sysctl_entries.items() -%}
+{{ key }}={{ value }}
+{% endif -%}
