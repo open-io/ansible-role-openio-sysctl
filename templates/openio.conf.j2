@@ -12,6 +12,13 @@ vm.swappiness={{ openio_galera_swappiness | d(0) }}
 # /galera
 
 {% endif -%}
+{% if openio_sysctl_redis_inventory_groupname in groups and inventory_hostname in groups[openio_sysctl_redis_inventory_groupname] -%}
+# redis
+vm.overcommit_memory=1
+# vm.nr_hugepages=0
+# /redis
+
+{% endif -%}
 {% for key,value in openio_sysctl_kernel_entries.items() -%}
 {{ key }}={{ value }}
 {% endfor -%}
