@@ -26,13 +26,14 @@
   register: _file_openio
   tags: configure
 
-- name: "Generate /etc/sysctl.d/{{ openio_sysctl_legacy_order_id }}-openio.conf"
+- name: "Generate legacy sysctl files"
   template:
     src: legacy.conf.j2
-    dest: "/etc/sysctl.d/{{ openio_sysctl_legacy_order_id}}-openio.conf"
+    dest: "/etc/sysctl.d/{{ item.name }}"
     owner: root
     group: root
     mode: 0644
+  with_items: "{{ openio_sysctl_legacy_kernel_files }}"
   register: _file_legacy
   tags: configure
 

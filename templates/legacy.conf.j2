@@ -1,4 +1,4 @@
 # {{ ansible_managed }}
-{% for key,value in openio_sysctl_legacy_kernel_entries.items() -%}
+{% for key,value in item.entries.items() -%}
 {{ key }}={{ value }}
-{% endif -%}
+{% endfor -%}

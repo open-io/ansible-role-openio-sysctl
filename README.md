@@ -18,7 +18,7 @@ Specifically, the responsibilities of this role are to:
 | :---       | :---    | :---             |
 | `openio_sysctl_namespace` | "OPENIO" | The namespace |
 | `openio_sysctl_kernel_entries` | `{}` | A dictionnary with OpenIO parameters and values. |
-| `openio_sysctl_legacy_kernel_entries` | `{}` | A dictionnary with legacy/Customer  parameters and values. |
+| `openio_sysctl_legacy_kernel_files` | `{}` | A list of dictionnaries with legacy/Customer filename, parameters and values. |
 
 ## Dependencies
 
@@ -36,6 +36,15 @@ No dependencies.
       openio_sysctl_namespace: "{{ NS }}"
       openio_sysctl_kernel_entries:
         net.ipv4.tcp_fastopen: 1
+      openio_sysctl_legacy_kernel_files:
+        - filename: "99-security.conf"
+          entries:
+            kernel.sysrq: 0
+            kernel.core_uses_pid: 1
+        - filename: "98-network.conf"
+          entries:
+            net.ipv4.tcp_syncookies: 1
+            net.ipv4.tcp_synack_retries: 5
 ```
 
 ## Contributing
