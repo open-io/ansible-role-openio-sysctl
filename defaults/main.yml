@@ -2,4 +2,6 @@
 openio_sysctl_conf_filename: "90-openio-{{ namespace | default('OPENIO') }}.conf"
 openio_sysctl_kernel_entries: {}
 openio_sysctl_legacy_kernel_files: []
+
+openio_sysctl_haproxy_inventory_groupname: haproxy
 ...

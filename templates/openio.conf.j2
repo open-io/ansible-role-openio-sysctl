@@ -1,4 +1,11 @@
 # {{ ansible_managed }}
+{% if openio_sysctl_haproxy_inventory_groupname in groups and inventory_hostname in groups[openio_sysctl_haproxy_inventory_groupname] -%}
+# HAProxy
+net.ipv4.ip_forward=1
+net.ipv4.ip_nonlocal_bind=1
+# /HAProxy
+
+{% endif -%}
 {% for key,value in openio_sysctl_kernel_entries.items() -%}
 {{ key }}={{ value }}
 {% endfor -%}
