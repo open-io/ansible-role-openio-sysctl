@@ -16,10 +16,10 @@
     mode: 0644
   tags: configure
 
-- name: "Generate /etc/sysctl.d/{{ openio_sysctl_order_id }}-openio-{{ openio_sysctl_namespace }}.conf"
+- name: "Generate /etc/sysctl.d/{{ openio_sysctl_conf_filename }}"
   template:
     src: openio.conf.j2
-    dest: "/etc/sysctl.d/{{ openio_sysctl_order_id}}-openio-{{ openio_sysctl_namespace}}.conf"
+    dest: "/etc/sysctl.d/{{ openio_sysctl_conf_filename }}"
     owner: root
     group: root
     mode: 0644
@@ -29,7 +29,7 @@
 - name: "Generate legacy sysctl files"
   template:
     src: legacy.conf.j2
-    dest: "/etc/sysctl.d/{{ item.name }}"
+    dest: "/etc/sysctl.d/{{ item.filename }}"
     owner: root
     group: root
     mode: 0644

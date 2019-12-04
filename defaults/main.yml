@@ -1,6 +1,5 @@
 ---
-openio_sysctl_namespace: "{{ namespace | default('OPENIO') }}"
-openio_sysctl_order_id: 90
+openio_sysctl_conf_filename: "90-openio-{{ namespace | default('OPENIO') }}.conf"
 openio_sysctl_kernel_entries: {}
 openio_sysctl_legacy_kernel_files: []
 ...

@@ -16,7 +16,7 @@ Specifically, the responsibilities of this role are to:
 
 | Variable   | Default | Comments (type)  |
 | :---       | :---    | :---             |
-| `openio_sysctl_namespace` | "OPENIO" | The namespace |
+| `openio_sysctl_conf_filename` | "90-openio-OPENIO.conf" | The filename of the OpenIO sysctl.d configuration file. |
 | `openio_sysctl_kernel_entries` | `{}` | A dictionnary with OpenIO parameters and values. |
 | `openio_sysctl_legacy_kernel_files` | `{}` | A list of dictionnaries with legacy/Customer filename, parameters and values. |
 
@@ -33,7 +33,7 @@ No dependencies.
     NS: OPENIO
   roles:
     - role: sysctl
-      openio_sysctl_namespace: "{{ NS }}"
+      openio_sysctl_conf_filename: "99-openio.conf"
       openio_sysctl_kernel_entries:
         net.ipv4.tcp_fastopen: 1
       openio_sysctl_legacy_kernel_files:
