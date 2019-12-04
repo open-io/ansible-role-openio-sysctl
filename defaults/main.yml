@@ -1,7 +1,7 @@
 ---
 openio_sysctl_namespace: "{{ namespace | default('OPENIO') }}"
 openio_sysctl_order_id: 42
-openio_sysctl_entries: {}
+openio_sysctl_kernel_entries: {}
 openio_sysctl_legacy_order_id: 99
-openio_sysctl_legacy_entries: {}
+openio_sysctl_legacy_kernel_entries: {}
 ...
