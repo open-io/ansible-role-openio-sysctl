@@ -4,4 +4,5 @@ openio_sysctl_kernel_entries: {}
 openio_sysctl_legacy_kernel_files: []
 
 openio_sysctl_haproxy_inventory_groupname: haproxy
+openio_sysctl_galera_inventory_groupname: galera
 ...

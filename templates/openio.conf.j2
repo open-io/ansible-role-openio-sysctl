@@ -6,6 +6,12 @@ net.ipv4.ip_nonlocal_bind=1
 # /HAProxy
 
 {% endif -%}
+{% if openio_sysctl_galera_inventory_groupname in groups and inventory_hostname in groups[openio_sysctl_galera_inventory_groupname] -%}
+# galera
+vm.swappiness={{ openio_galera_swappiness | d(0) }}
+# /galera
+
+{% endif -%}
 {% for key,value in openio_sysctl_kernel_entries.items() -%}
 {{ key }}={{ value }}
 {% endfor -%}
